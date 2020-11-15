@@ -1,0 +1,3 @@
+MyNetAPI.c:12:6:InputGet	16	static
+MyNetAPI.c:28:6:GetResult	24	static
+MyNetAPI.c:43:6:HandRecResultPrint	8	static

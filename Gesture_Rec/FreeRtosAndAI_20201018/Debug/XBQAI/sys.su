@@ -1,0 +1,6 @@
+core_cm7.h:2229:22:SCB_EnableICache	4	static,ignoring_inline_asm
+core_cm7.h:2281:22:SCB_EnableDCache	24	static,ignoring_inline_asm
+sys.c:19:6:Cache_Enable	8	static
+sys.c:52:6:Stm32_Clock_Init	144	static
+sys.c:117:4:Get_ICahceSta	16	static
+sys.c:126:4:Get_DCahceSta	16	static

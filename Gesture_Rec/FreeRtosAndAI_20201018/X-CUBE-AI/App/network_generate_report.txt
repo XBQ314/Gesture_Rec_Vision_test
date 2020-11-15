@@ -1,0 +1,123 @@
+Neural Network Tools for STM32 v1.3.0 (AI tools v5.1.2)
+Created date       : 2020-10-20 23:12:51
+Parameters         : generate --name network -m D:/Py Project/NN/Keras/myHandRec20201015.h5 --type keras --compression 1 --verbosity 1 --workspace C:\Users\xbq28\AppData\Local\Temp\mxAI_workspace122306203526008895216007600411639 --output C:\Users\xbq28\.stm32cubemx\stm32ai_output
+
+Exec/report summary (generate dur=0.47s err=0)
+------------------------------------------------------------------------------------------------------------------------
+model file         : D:\Py Project\NN\Keras\myHandRec20201015.h5
+type               : keras (keras_dump) - Keras.io 2.3.1
+c_name             : network
+compression        : None
+quantize           : None
+workspace dir      : C:\Users\xbq28\AppData\Local\Temp\mxAI_workspace122306203526008895216007600411639
+output dir         : C:\Users\xbq28\.stm32cubemx\stm32ai_output
+
+model_name         : myHandRec20201015
+model_hash         : 413020473216d51be4062a1fe1f4b213
+input              : input_0 [64 items, 256 B, ai_float, FLOAT32, (64,)]
+inputs (total)     : 256 B
+output             : dense_3_nl [5 items, 20 B, ai_float, FLOAT32, (5,)]
+outputs (total)    : 20 B
+params #           : 2,693 items (10.52 KiB)
+macc               : 2,763
+weights (ro)       : 10,772 B (10.52 KiB) 
+activations (rw)   : 192 B (192 B) 
+ram (total)        : 468 B (468 B) = 192 + 256 + 20
+
+------------------------------------------------------------------------------------------------------------------------
+id  layer (type)              output shape      param #     connected to             macc           rom                
+------------------------------------------------------------------------------------------------------------------------
+0   input_0 (Input)           (64,)                                                                                    
+    dense_1 (Dense)           (32,)             2,080       input_0                  2,048          8,320              
+    dense_1_nl (Nonlinearity) (32,)                         dense_1                  32                                
+------------------------------------------------------------------------------------------------------------------------
+1   dense_2 (Dense)           (16,)             528         dense_1_nl               512            2,112              
+    dense_2_nl (Nonlinearity) (16,)                         dense_2                  16                                
+------------------------------------------------------------------------------------------------------------------------
+2   dense_3 (Dense)           (5,)              85          dense_2_nl               80             340                
+    dense_3_nl (Nonlinearity) (5,)                          dense_3                  75                                
+------------------------------------------------------------------------------------------------------------------------
+myHandRec20201015 p=2693(10.52 KBytes) macc=2763 rom=10.52 KBytes ram=192 B io_ram=276 B
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name         : myhandrec20201015
+c-name             : network
+c-node #           : 6
+c-array #          : 13
+activations size   : 192
+weights size       : 10772
+macc               : 2763
+inputs             : ['input_0_output_array']
+outputs            : ['dense_3_nl_output_array']
+
+
+C-Arrays (13)
+------------------------------------------------------------------------------------------------------------------------
+c_id  name (*_array)     item/size           mem-pool     c-type       fmt    comment            
+------------------------------------------------------------------------------------------------------------------------
+0     dense_3_bias       5/20                weights      const float  float                     
+1     dense_3_weights    80/320              weights      const float  float                     
+2     dense_2_bias       16/64               weights      const float  float                     
+3     dense_2_weights    512/2048            weights      const float  float                     
+4     dense_1_bias       32/128              weights      const float  float                     
+5     dense_1_weights    2048/8192           weights      const float  float                     
+6     input_0_output     64/256              user         float        float  /input             
+7     dense_1_output     32/128              activations  float        float                     
+8     dense_1_nl_output  32/128              activations  float        float                     
+9     dense_2_output     16/64               activations  float        float                     
+10    dense_2_nl_output  16/64               activations  float        float                     
+11    dense_3_output     5/20                activations  float        float                     
+12    dense_3_nl_output  5/20                user         float        float  /output            
+------------------------------------------------------------------------------------------------------------------------
+
+
+C-Layers (6)
+------------------------------------------------------------------------------------------------------------------------
+c_id  name (*_layer)  id  type   macc        rom         tensors               shape (array id)                       
+------------------------------------------------------------------------------------------------------------------------
+0     dense_1         0   dense  2048        8320        I: input_0_output     [1, 1, 1, 64] (6)                      
+                                                         W: dense_1_weights                                           
+                                                         W: dense_1_bias                                              
+                                                         O: dense_1_output     [1, 1, 1, 32] (7)                      
+------------------------------------------------------------------------------------------------------------------------
+1     dense_1_nl      0   nl     32          0           I: dense_1_output     [1, 1, 1, 32] (7)                      
+                                                         O: dense_1_nl_output  [1, 1, 1, 32] (8)                      
+------------------------------------------------------------------------------------------------------------------------
+2     dense_2         1   dense  512         2112        I: dense_1_nl_output  [1, 1, 1, 32] (8)                      
+                                                         W: dense_2_weights                                           
+                                                         W: dense_2_bias                                              
+                                                         O: dense_2_output     [1, 1, 1, 16] (9)                      
+------------------------------------------------------------------------------------------------------------------------
+3     dense_2_nl      1   nl     16          0           I: dense_2_output     [1, 1, 1, 16] (9)                      
+                                                         O: dense_2_nl_output  [1, 1, 1, 16] (10)                     
+------------------------------------------------------------------------------------------------------------------------
+4     dense_3         2   dense  80          340         I: dense_2_nl_output  [1, 1, 1, 16] (10)                     
+                                                         W: dense_3_weights                                           
+                                                         W: dense_3_bias                                              
+                                                         O: dense_3_output     [1, 1, 1, 5] (11)                      
+------------------------------------------------------------------------------------------------------------------------
+5     dense_3_nl      2   nl     75          0           I: dense_3_output     [1, 1, 1, 5] (11)                      
+                                                         O: dense_3_nl_output  [1, 1, 1, 5] (12)                      
+------------------------------------------------------------------------------------------------------------------------
+
+
+ 
+Complexity per-layer - macc=2,763 rom=10,772
+------------------------------------------------------------------------------------------------------------------------
+id      layer (type)              macc                                    rom                                    
+------------------------------------------------------------------------------------------------------------------------
+0       dense_1 (Dense)           |||||||||||||||||||||||||||||||  74.1%  |||||||||||||||||||||||||||||||  77.2% 
+0       dense_1_nl (Nonlinearity) |                                 1.2%  |                                 0.0% 
+1       dense_2 (Dense)           ||||||||                         18.5%  ||||||||                         19.6% 
+1       dense_2_nl (Nonlinearity) |                                 0.6%  |                                 0.0% 
+2       dense_3 (Dense)           ||                                2.9%  ||                                3.2% 
+2       dense_3_nl (Nonlinearity) ||                                2.7%  |                                 0.0% 
+------------------------------------------------------------------------------------------------------------------------
+
+
+Evaluation report (summary)
+------------------------------------------------------------
+NOT EVALUATED
